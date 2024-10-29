@@ -1,0 +1,149 @@
+/* CSS cho toàn bộ trang */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f7;
+    color: #333;
+}
+
+/* CSS cho thanh topbar */
+.topbar {
+    width: 100%;
+    background-color: #34495e;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.topbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.topbar a:hover {
+    background-color: #2c3e50;
+}
+
+.topbar a.active {
+    background-color: #1abc9c;
+    color: white;
+    border-bottom: 3px solid #16a085;
+}
+
+/* Container chính */
+.container {
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 40px;
+}
+
+h1 {
+    color: #34495e;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* CSS cho form tìm kiếm */
+.search-bar form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* khoảng cách giữa input và button */
+    margin-top: 20px;
+}
+
+.search-bar input[type="text"] {
+    width: 70%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #1abc9c;
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    background-color: #1abc9c;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #16a085;
+}
+
+/* CSS cho kết quả tìm kiếm */
+.results {
+    max-height: 400px; /* Thiết lập chiều cao tối đa */
+    overflow-y: auto; /* Hiển thị thanh cuộn dọc khi cần */
+    border: 1px solid #ccc; /* Thêm viền cho dễ nhìn */
+    padding: 10px; /* Thêm khoảng cách bên trong */
+    margin-top: 10px; /* Khoảng cách phía trên */
+}
+
+.results h2 {
+    color: #555;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.result-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 1.1em;
+}
+/* CSS cho bảng kết quả tìm kiếm */
+table {
+    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng của container */
+    border-collapse: collapse; /* Kết hợp các đường biên lại với nhau */
+    margin-top: 20px; /* Khoảng cách phía trên của bảng */
+}
+
+th, td {
+    padding: 12px; /* Khoảng cách bên trong cho các ô */
+    text-align: left; /* Canh trái văn bản trong ô */
+}
+
+th {
+    background-color: #34495e; /* Màu nền cho hàng tiêu đề */
+    color: white; /* Màu chữ cho hàng tiêu đề */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Màu nền cho hàng chẵn */
+}
+
+tr:hover {
+    background-color: #dcdcdc; /* Màu nền khi di chuột qua hàng */
+}
+
+td {
+    border-bottom: 1px solid #ddd; /* Đường viền dưới mỗi ô */
+}
+
+/* CSS cho thông báo không tìm thấy */
+.results p {
+    color: #e74c3c; /* Màu đỏ cho thông báo */
+    font-weight: bold; /* Chữ in đậm */
+}
