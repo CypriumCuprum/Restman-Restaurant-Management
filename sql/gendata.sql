@@ -61,8 +61,8 @@ INSERT INTO tblcombomonan232 (id, tblcombo232id, tblmonan232id) VALUES
 (7, 2, 5);  -- Hủ Tiếu
 
 -- Thêm dữ liệu cho bảng tblbandat232
-INSERT INTO tblbandat232 (id, thoigiandat, confirmdat, mota, tblkhachhang232id, tblnhanvienbanhang232id, tblbanan232id) VALUES
-(1, '2024-10-20', TRUE, 'Đặt bàn cho khách hàng 2', 2, 3, 1);
+INSERT INTO tblbandat232 (id, thoigiandat,thoigianan, confirmdat, mota, tblkhachhang232id, tblnhanvienbanhang232id, tblbanan232id) VALUES
+(1, '2024-10-20 15:30:00','buổi sáng', TRUE, 'Đặt bàn cho khách hàng 2', 2, 3, 1);
 
 -- Thêm dữ liệu cho bảng tblbandatcombo232
 INSERT INTO tblbandatcombo232 (id, soluong, dongia, tblbandat232id, tblcombo232id) VALUES

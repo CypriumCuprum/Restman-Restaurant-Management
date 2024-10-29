@@ -16,20 +16,26 @@ public class Bandat232 {
 
     private int id;
     private Date thoigiandat;
+    private String thoigianan;
     private boolean confirmdat;
     private String mota;
     private Khachhang232 khachhang232;
     private Nhanvienbanhang232 nhanvienbanhang232; // nhân viên bán hàng tạo hoặc xác nhận bàn đặt
     private Banan232 banan232;
 
-    public Bandat232(int id, Date thoigiandat, boolean confirmdat, String mota, Khachhang232 khachhang232, Nhanvienbanhang232 nhanvienbanhang232, Banan232 banan232) {
+    public Bandat232(int id, Date thoigiandat, String thoigianan, boolean confirmdat, String mota, Khachhang232 khachhang232, Nhanvienbanhang232 nhanvienbanhang232, Banan232 banan232) {
         this.id = id;
         this.thoigiandat = thoigiandat;
+        this.thoigianan = thoigianan;
         this.confirmdat = confirmdat;
         this.mota = mota;
         this.khachhang232 = khachhang232;
         this.nhanvienbanhang232 = nhanvienbanhang232;
         this.banan232 = banan232;
+    }
+
+    public String getThoigianan() {
+        return thoigianan;
     }
 
     public int getId() {
@@ -88,4 +94,7 @@ public class Bandat232 {
         this.banan232 = banan232;
     }
 
+    public void setThoigianan(String thoigianan) {
+        this.thoigianan = thoigianan;
+    }
 }

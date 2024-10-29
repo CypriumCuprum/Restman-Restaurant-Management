@@ -4,7 +4,11 @@
     Author     : Cuprum
 --%>
 
-<%@page import="model.monan.Monan232"%>
+
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="dao.BandatDAO232"%>
+<%@page import="model.banan.Bandat232"%>
 <%@page import="dao.MonanDAO232"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
@@ -48,34 +52,46 @@
                         <th>ID</th>
                         <th>Tên Bàn</th>
                         <th>Khách hàng</th>
+                        <th>Thời gian đặt</th>
+                        <th>Buổi ăn</th>
                     </tr>
                     
             <%
                 // Lấy giá trị từ tham số 'query' trong GET request
                 String query = request.getParameter("query");
-                List<Monan232> foodItems = new ArrayList<>();
-                MonanDAO232 monanDAO232 = new MonanDAO232();
+                List<Bandat232> bandat232arr = new ArrayList<>();
+                BandatDAO232 bandatDAO232 = new BandatDAO232();
                 // Kiểm tra nếu có giá trị tìm kiếm
                 if (query != null && !query.trim().isEmpty()) {
                     // Giả lập danh sách món ăn có sẵn
-                    foodItems = monanDAO232.getMonAn(query);
+                    bandat232arr = bandatDAO232.getBandattheoten(query);
                 }
                 
-                if (foodItems.isEmpty()) {
+                if (bandat232arr.isEmpty()) {
                         %>
-                        <p>Không tìm thấy món ăn nào phù hợp với tìm kiếm của bạn.</p>
+                        <p>Không tìm thấy bàn ăn nào phù hợp với tìm kiếm của bạn.</p>
                         <%
                     }
                 else{
 
                     // Tìm kiếm các món ăn phù hợp
-                    for (Monan232 item : foodItems) {
-                        session.setAttribute("monan_"+ item.getId(), item);
+                    for (Bandat232 item : bandat232arr) {
+                        session.setAttribute("bandat_"+ item.getId(), item);
+                        int id_item = item.getId();
+                        String tenban = item.getBanan232().getTenban();
+                        String tenkhachhang = item.getKhachhang232().getHovaten();
+                        String tennvbh = item.getNhanvienbanhang232().getHovaten();
+                        Date timedatban = item.getThoigiandat();
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        String strThoiGianDat = sdf.format(timedatban);
+                        String thoigianan = item.getThoigianan();
                     %>
-                             <tr onclick="window.location.href='gdThongtinmonan232.jsp?id=<%= item.getId() %>'">
-                        <td><%= item.getId() %></td>
-                        <td><%= item.getTen() %></td>
-                        <td><%= item.getDongia() %></td>
+                             <tr onclick="window.location.href='gdHoadonKH232.jsp?id=<%= item.getId() %>'">
+                        <td><%= id_item %></td>
+                        <td><%= tenban %></td>
+                        <td><%= tenkhachhang %></td>
+                        <td><%= strThoiGianDat %></td>
+                        <td><%= thoigianan %></td>
                     </tr>
                     <%
                     }

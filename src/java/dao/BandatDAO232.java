@@ -6,6 +6,7 @@ package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.banan.Banan232;
 import model.banan.Bandat232;
@@ -35,7 +36,8 @@ public class BandatDAO232 extends DAO232 {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     int id = rs.getInt("id");
-                    Date thoigiandat = rs.getDate("thoigiandat");
+                    Date thoigiandat = rs.getTimestamp("thoigiandat");
+                    String thoigianan = rs.getString("thoigianan");
                     boolean confirmdat = rs.getBoolean("confirmdat");
                     String mota = rs.getString("mota");
                     int khachhangId = rs.getInt("tblkhachhang232id");
@@ -45,14 +47,8 @@ public class BandatDAO232 extends DAO232 {
                     Khachhang232 khachhang232 = (new KHDAO232()).getkhachhangbyId(khachhangId);
                     Nhanvienbanhang232 nhanvienbanhang232 = (new NhanvienbanhangDAO232()).getNVBHbyID(nhanvienId);
                     Banan232 banan232 = (new BananDAO232()).get_banan_by_id(bananId);
-                    // Tạo đối tượng Bandat232 và thêm vào danh sách
-                    Bandat232 bandat = new Bandat232(id, thoigiandat, confirmdat, mota, khachhang232, nhanvienbanhang232, banan232);
+                    Bandat232 bandat = new Bandat232(id, thoigiandat, thoigianan, confirmdat, mota, khachhang232, nhanvienbanhang232, banan232);
                     bandatList.add(bandat);
-
-                    // Thêm các chi tiết khác như Khachhang232, Nhanvienbanhang232 sau khi load các bảng tương ứng
-                    // bandat.setKhachhang232(getKhachhangById(khachhangId));
-                    // bandat.setNhanvienbanhang232(getNhanvienbanhangById(nhanvienId));
-                    // bandat.setBanan232(getBananById(bananId));
                 }
             }
         } catch (Exception e) {

@@ -107,8 +107,8 @@ CREATE TABLE tblcombomonan232 (
 -- Tạo bảng tblbandat232
 CREATE TABLE tblbandat232 (
     id INT PRIMARY KEY,
-    
-    thoigiandat DATE NOT NULL,
+    thoigiandat DATETIME NOT NULL,
+    thoigianan varchar(255) NOT NULL,
     confirmdat BOOLEAN NOT NULL DEFAULT FALSE,
     mota VARCHAR(255) NOT NULL,
     tblkhachhang232id INT NOT NULL,
@@ -116,7 +116,8 @@ CREATE TABLE tblbandat232 (
     tblbanan232id INT NOT NULL,
     FOREIGN KEY (tblkhachhang232id) REFERENCES tblkhachhang232(tblnguoidung232id),
     FOREIGN KEY (tblnhanvienbanhang232id) REFERENCES tblnhanvienbanhang232(tblnhanvien232tblnguoidung232id),
-    FOREIGN KEY (tblbanan232id) REFERENCES tblbanan232(id)
+    FOREIGN KEY (tblbanan232id) REFERENCES tblbanan232(id),
+    CHECK (thoigianan IN ('buổi sáng', 'buổi trưa', 'buổi tối'))
 );
 
 -- Tạo bảng tblbandatcombo232

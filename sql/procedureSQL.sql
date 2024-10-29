@@ -16,7 +16,7 @@ DELIMITER //
 
 CREATE PROCEDURE get_bandat_by_tenban(IN tenban_input VARCHAR(255))
 BEGIN
-    SELECT b.id, b.thoigiandat, b.confirmdat, b.mota, 
+    SELECT b.id, b.thoigiandat, b.thoigianan, b.confirmdat, b.mota, 
            b.tblkhachhang232id, b.tblnhanvienbanhang232id, b.tblbanan232id
     FROM tblbandat232 b
     JOIN tblbanan232 ba ON b.tblbanan232id = ba.id
@@ -188,22 +188,22 @@ BEGIN
     END IF;
 END //
 
--- CREATE PROCEDURE sp_kiemtra_vitri_nhanvien232(
---     IN in_nhanvien_id INT,    -- Đầu vào là ID nhân viên
---     OUT out_vitri VARCHAR(255)  -- Đầu ra là vị trí của nhân viên
--- )
--- BEGIN
---     -- Kiểm tra xem nhân viên có tồn tại không và trả về vị trí
---     SELECT vitri
---     INTO out_vitri
---     FROM tblnhanvien232
---     WHERE tblnguoidung232id = in_nhanvien_id;
+CREATE PROCEDURE sp_kiemtra_vitri_nhanvien232(
+    IN in_nhanvien_id INT,    -- Đầu vào là ID nhân viên--
+    OUT out_vitri VARCHAR(255)  -- Đầu ra là vị trí của nhân viên
+)
+BEGIN
+    -- Kiểm tra xem nhân viên có tồn tại không và trả về vị trí
+    SELECT vitri
+	INTO out_vitri
+    FROM tblnhanvien232
+     WHERE tblnguoidung232id = in_nhanvien_id;
 
---     -- Nếu không có kết quả, trả về null
---     IF out_vitri IS NULL THEN
---         SET out_vitri = 'Không tìm thấy nhân viên';
---     END IF;
--- END //
+     -- Nếu không có kết quả, trả về null
+     IF out_vitri IS NULL THEN
+         SET out_vitri = 'Không tìm thấy nhân viên';
+     END IF;
+END //
 
 
 DELIMITER ;
