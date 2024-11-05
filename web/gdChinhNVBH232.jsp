@@ -4,6 +4,7 @@
     Author     : Cuprum
 --%>
 
+<%@page import="model.nguoidung.Nhanvienbanhang232"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,13 @@
             <!--đang phát triển-->
             <a href="homepage.jsp">Hỗ trợ khách hàng</a> 
             <a href="dangxuat.jsp">Đăng xuất</a>
+        </div>
+        <%
+            Nhanvienbanhang232 nhanvienbanhang232 = (Nhanvienbanhang232)session.getAttribute("nvbh");
+        %>
+        <div class="content">
+            <h1>Chào mừng <%= nhanvienbanhang232.getHovaten() %>!</h1>
+            <p>Chúc một ngày làm việc vui vẻ</p>
         </div>
     </body>
 </html>

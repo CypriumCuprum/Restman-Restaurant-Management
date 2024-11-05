@@ -84,7 +84,8 @@ CREATE TABLE tblbanan232 (
 CREATE TABLE tblcombo232 (
     id INT PRIMARY KEY,
     ten VARCHAR(255) NOT NULL,
-    mota VARCHAR(255) NOT NULL
+    mota VARCHAR(255) NOT NULL,
+    dongia FLOAT(10) NOT NULL CHECK (dongia >= 0)
 );
 
 -- Tạo bảng tblmonan232
@@ -109,6 +110,7 @@ CREATE TABLE tblbandat232 (
     id INT PRIMARY KEY,
     thoigiandat DATETIME NOT NULL,
     thoigianan varchar(255) NOT NULL,
+    ngayan date NOT NULL,
     confirmdat BOOLEAN NOT NULL DEFAULT FALSE,
     mota VARCHAR(255) NOT NULL,
     tblkhachhang232id INT NOT NULL,
@@ -144,11 +146,11 @@ CREATE TABLE tblbandatmonan232 (
 
 -- Tạo bảng tblhoadon232
 CREATE TABLE tblhoadon232 (
-    id INT PRIMARY KEY,
-    tongtien FLOAT(10) NOT NULL CHECK (tongtien >= 0),
+	tblnhanvienbanhang232id INT NOT NULL,
     thoigian DATE NOT NULL,
-    tblbandat232id INT NOT NULL,
-    FOREIGN KEY (tblbandat232id) REFERENCES tblbandat232(id)
+    tblbandat232id INT NOT NULL key,
+    FOREIGN KEY (tblbandat232id) REFERENCES tblbandat232(id),
+    FOREIGN KEY (tblnhanvienbanhang232id) references tblnhanvienbanhang232(tblnhanvien232tblnguoidung232id)
 );
 
 -- Tạo bảng tblnhacungcap232

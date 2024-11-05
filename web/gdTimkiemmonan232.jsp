@@ -4,6 +4,8 @@
     Author     : Cuprum
 --%>
 
+<%@page import="dao.ComboDAO232"%>
+<%@page import="model.monan.Combo232"%>
 <%@page import="model.monan.Monan232"%>
 <%@page import="dao.MonanDAO232"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,7 +22,7 @@
     <body>
         <!-- Thanh menu topbar -->
         <div class="topbar">
-            <a href="gdChinhKH232.jsp">Trang chủ</a>
+            <a href="gdChinhKH232.jsp" class="active">Trang chủ</a>
             <!--đang phát triển-->
             <a href="homepage.jsp">Thông tin tài khoản</a>
             <a href="gdTimkiemmonan232.jsp">Tìm kiếm món ăn</a>
@@ -38,10 +40,10 @@
                 <button type="submit">Tìm Kiếm</button>
             </form>
         </div>
-
+<h2>Kết Quả Tìm Kiếm</h2>
         <div class="results">
-            <h2>Kết Quả Tìm Kiếm</h2>
             
+            <h3>Món ăn</h3>
 
                 <table border="2">
                     <tr>
@@ -58,7 +60,7 @@
                 // Kiểm tra nếu có giá trị tìm kiếm
                 if (query != null && !query.trim().isEmpty()) {
                     // Giả lập danh sách món ăn có sẵn
-                    foodItems = monanDAO232.getMonAn(query);
+                    foodItems = monanDAO232.getMonAnbyname(query);
                 }
                 
                 if (foodItems.isEmpty()) {
@@ -72,7 +74,7 @@
                     for (Monan232 item : foodItems) {
                         session.setAttribute("monan_"+ item.getId(), item);
                     %>
-                             <tr onclick="window.location.href='gdThongtinmonan232.jsp?id=<%= item.getId() %>'">
+                             <tr onclick="window.location.href='gdThongtinmonan232.jsp?id=<%= "monan_"+ item.getId() %>'">
                         <td><%= item.getId() %></td>
                         <td><%= item.getTen() %></td>
                         <td><%= item.getDongia() %></td>
@@ -82,7 +84,54 @@
                 }
                 
             %>
+            </table>
+            
+            
+            
         </div>
+            
+            <div class="results">
+                <h3>Combo</h3>
+            <table border="2">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên Combo</th>
+                        <th>Đơn Giá</th>
+                    </tr>
+                    
+            <%
+                // Lấy giá trị từ tham số 'query' trong GET request
+                List<Combo232> comboItems = new ArrayList<>();
+                ComboDAO232 comboDAO232 = new ComboDAO232();
+                // Kiểm tra nếu có giá trị tìm kiếm
+                if (query != null && !query.trim().isEmpty()) {
+                    // Giả lập danh sách món ăn có sẵn
+                    comboItems = comboDAO232.getCombobyname(query);
+                }
+                
+                if (comboItems.isEmpty()) {
+                        %>
+                        <p>Không tìm thấy combo nào phù hợp với tìm kiếm của bạn.</p>
+                        <%
+                    }
+                else{
+
+                    // Tìm kiếm các món ăn phù hợp
+                    for (Combo232 item : comboItems) {
+                        session.setAttribute("combo_"+ item.getId(), item);
+                    %>
+                             <tr onclick="window.location.href='gdThongtinmonan232.jsp?id=<%= "combo_"+ item.getId() %>'">
+                        <td><%= item.getId() %></td>
+                        <td><%= item.getTen() %></td>
+                        <td><%= item.getDongia() %></td>
+                    </tr>
+                    <%
+                    }
+                }
+                
+            %>
+            </table>
+            </div>
     </div>
     </body>
 </html>

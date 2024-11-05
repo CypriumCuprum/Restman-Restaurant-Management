@@ -19,7 +19,7 @@ public class MonanDAO232 extends DAO232 {
         super();
     }
 
-    public List<Monan232> getMonAn(String tenMonAn) throws SQLException {
+    public List<Monan232> getMonAnbyname(String tenMonAn) throws SQLException {
         List<Monan232> danhSachMonAn = new ArrayList<>();
         String sql = "{CALL timkiemmonantheoten(?)}";
 
@@ -43,5 +43,33 @@ public class MonanDAO232 extends DAO232 {
         }
 
         return danhSachMonAn;
+    }
+
+    public Monan232 getMonanbyId(int id) {
+        Monan232 monan = null;
+        String query = "CALL getMonanbyId(?)"; // Giả sử bạn đã tạo stored procedure như đã nêu
+
+        try {
+            Connection connection = this.getConnection();
+            CallableStatement statement = connection.prepareCall(query);
+
+            statement.setInt(1, id); // Gán giá trị id vào tham số của procedure
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Lấy thông tin từ ResultSet và tạo đối tượng Monan232
+                    int monanId = resultSet.getInt("id");
+                    String ten = resultSet.getString("ten");
+                    String mota = resultSet.getString("mota");
+                    float dongia = resultSet.getFloat("dongia");
+
+                    monan = new Monan232(monanId, ten, mota, dongia);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Xử lý lỗi nếu cần
+        }
+
+        return monan; // Trả về đối tượng Monan232, có thể là null nếu không tìm thấy
     }
 }

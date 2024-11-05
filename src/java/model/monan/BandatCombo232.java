@@ -13,6 +13,7 @@ public class BandatCombo232 {
     private int id;
     private int soluong;
     private float dongia;
+    private float tongtien;
     private Combo232 combo232;
 
     public BandatCombo232(int id, int soluong, float dongia, Combo232 combo232) {
@@ -20,6 +21,12 @@ public class BandatCombo232 {
         this.soluong = soluong;
         this.dongia = dongia;
         this.combo232 = combo232;
+        this.tongtien = this.soluong * this.dongia;
+
+    }
+
+    public float getTongtien() {
+        return tongtien;
     }
 
     public int getId() {

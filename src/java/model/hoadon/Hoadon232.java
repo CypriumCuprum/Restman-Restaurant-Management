@@ -6,7 +6,8 @@ package model.hoadon;
 
 import java.util.*;
 import model.banan.Bandat232;
-import model.nguoidung.Khachhang232;
+import model.monan.BandatCombo232;
+import model.monan.BandatMonan232;
 import model.nguoidung.Nhanvienbanhang232;
 
 /**
@@ -18,17 +19,21 @@ public class Hoadon232 {
     private int id;
     private float tongtien;
     private Date thoigiantao;
-    private Nhanvienbanhang232 nvbhtaodon;
-    private Khachhang232 khachhangthanhtoan;
+    private Nhanvienbanhang232 nvbhtaohoadon;
     private Bandat232 bandat;
 
-    public Hoadon232(int id, float tongtien, Date thoigiantao, Nhanvienbanhang232 nvbhtaodon, Khachhang232 khachhangthanhtoan, Bandat232 bandat) {
+    public Hoadon232(int id, Date thoigiantao, Nhanvienbanhang232 nvbhtaodon, Bandat232 bandat) {
         this.id = id;
-        this.tongtien = tongtien;
+        this.tongtien = 0;
         this.thoigiantao = thoigiantao;
-        this.nvbhtaodon = nvbhtaodon;
-        this.khachhangthanhtoan = khachhangthanhtoan;
+        this.nvbhtaohoadon = nvbhtaodon;
         this.bandat = bandat;
+        for (BandatCombo232 item : bandat.getBandatCombo232arr()) {
+            this.tongtien += item.getTongtien();
+        }
+        for (BandatMonan232 item : bandat.getBandatMonan232arr()) {
+            this.tongtien += item.getTongtien();
+        }
     }
 
     public int getId() {
@@ -43,12 +48,8 @@ public class Hoadon232 {
         return thoigiantao;
     }
 
-    public Nhanvienbanhang232 getNvbhtaodon() {
-        return nvbhtaodon;
-    }
-
-    public Khachhang232 getKhachhangthanhtoan() {
-        return khachhangthanhtoan;
+    public Nhanvienbanhang232 getNvbhtaohoadon() {
+        return nvbhtaohoadon;
     }
 
     public Bandat232 getBandat() {
@@ -67,12 +68,8 @@ public class Hoadon232 {
         this.thoigiantao = thoigiantao;
     }
 
-    public void setNvbhtaodon(Nhanvienbanhang232 nvbhtaodon) {
-        this.nvbhtaodon = nvbhtaodon;
-    }
-
-    public void setKhachhangthanhtoan(Khachhang232 khachhangthanhtoan) {
-        this.khachhangthanhtoan = khachhangthanhtoan;
+    public void setNvbhtaohoadon(Nhanvienbanhang232 nvbhtaodon) {
+        this.nvbhtaohoadon = nvbhtaodon;
     }
 
     public void setBandat(Bandat232 bandat) {

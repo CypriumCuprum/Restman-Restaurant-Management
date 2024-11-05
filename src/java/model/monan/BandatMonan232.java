@@ -13,6 +13,7 @@ public class BandatMonan232 {
     private int id;
     private int soluong;
     private float dongia;
+    private float tongtien;
     private Monan232 monan232;
 
     public BandatMonan232(int id, int soluong, float dongia, Monan232 monan232) {
@@ -20,6 +21,11 @@ public class BandatMonan232 {
         this.soluong = soluong;
         this.dongia = dongia;
         this.monan232 = monan232;
+        this.tongtien = this.soluong * this.dongia;
+    }
+
+    public float getTongtien() {
+        return tongtien;
     }
 
     public int getId() {

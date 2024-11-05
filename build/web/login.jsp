@@ -1,3 +1,4 @@
+<%@page import="model.nguoidung.Nhanvienbanhang232"%>
 <%@page import="dao.NhanvienDAO232"%>
 <%@page import="model.nguoidung.Nhanvien232"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -40,6 +41,9 @@
                                 String vitri = nhanvienDAO232.getVitri(nguoidung.getId());
                                 if ("nhanvienbanhang".equals(vitri)) {
                                     response.sendRedirect("gdChinhNVBH232.jsp");
+                                    Nhanvienbanhang232 nvbh232 = new Nhanvienbanhang232(vitri, nguoidung.getId(), nguoidung.getUsername(), nguoidung.getPassword(), nguoidung.getHovaten(), nguoidung.getDiachi(), nguoidung.getSdt(), nguoidung.getGhichu(), vaitro);
+                                    nvbh232.setVitri(vitri);
+                                    session.setAttribute("nvbh", nvbh232);
                                 } else if ("quanly".equals(vitri)) {
                                     response.sendRedirect("gdChinhquanly232.jsp");
                                 } else if ("nhanvienkho".equals(vitri)) {
@@ -48,9 +52,11 @@
                                     System.out.println("Sai vị trí");
                                 }
                             }
+                            
                         } else {
                             out.println("<p style='color:red;'>Sai tên đăng nhập hoặc mật khẩu. Vui lòng thử lại.</p>");
                         }
+                        
                     } catch (SQLException e) {
                         e.printStackTrace();
                         out.println("<p style='color:red;'>Có lỗi xảy ra khi kết nối đến cơ sở dữ liệu.</p>");

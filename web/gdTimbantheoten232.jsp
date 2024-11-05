@@ -24,7 +24,7 @@
     <body>
         <!-- Thanh menu topbar -->
         <div class="topbar">
-            <a href="gdChinhNVBH232.jsp">Trang chủ</a>
+            <a href="gdChinhNVBH232.jsp" class="active">Trang chủ</a>
             <!--đang phát triển-->
             <a href="homepage.jsp">Thông tin tài khoản</a>
             <a href="gdTimbantheoten232.jsp">Tìm bàn</a>
@@ -73,8 +73,6 @@
                         <%
                     }
                 else{
-
-                    // Tìm kiếm các món ăn phù hợp
                     for (Bandat232 item : bandat232arr) {
                         session.setAttribute("bandat_"+ item.getId(), item);
                         int id_item = item.getId();
@@ -96,8 +94,10 @@
                     <%
                     }
                 }
+
                 
             %>
+                </table>
         </div>
     </div>
     </body>

@@ -3,20 +3,140 @@ use btl_restman;
 DROP PROCEDURE IF EXISTS get_bandat_by_tenban;
 DROP PROCEDURE IF EXISTS get_khachhang_by_id;
 DROP PROCEDURE IF EXISTS get_banan_by_id;
-DROP PROCEDURE IF EXISTS GetBandatMonAnAndComboInfoByBandatId;
-DROP PROCEDURE IF EXISTS GetBandatMonAnInfoByBandatId;
 DROP PROCEDURE IF EXISTS timBantheoTenBan;
 DROP PROCEDURE IF EXISTS timkiemmonantheoten;
+DROP PROCEDURE IF EXISTS timkiemcombotheoten;
 DROP PROCEDURE IF EXISTS CheckUserCredentials;
 DROP PROCEDURE IF EXISTS sp_kiemtra_vitri_nhanvien232;
 DROP PROCEDURE IF EXISTS get_khachhang_info_by_id;
 DROP PROCEDURE IF EXISTS get_NVBH_info_by_id;
+DROP PROCEDURE IF EXISTS getinforbandatcombo_by_bandatid;
+DROP PROCEDURE IF EXISTS getinforbandatmonan_by_bandatid;
+DROP PROCEDURE IF EXISTS getCombobyId;
+DROP PROCEDURE IF EXISTS getMonanbyId;
+DROP PROCEDURE IF EXISTS savehoadon232;
+DROP PROCEDURE IF EXISTS timhoadonbyid;
+DROP PROCEDURE IF EXISTS getbandatbyid;
+DELIMITER //
 
+CREATE PROCEDURE getbandatbyid(IN bandat_id INT)
+BEGIN
+    SELECT 
+        id,
+        thoigiandat,
+        thoigianan,
+        ngayan,
+        confirmdat,
+        mota,
+        tblkhachhang232id,
+        tblnhanvienbanhang232id,
+        tblbanan232id
+    FROM 
+        tblbandat232
+    WHERE 
+        id = bandat_id;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE timhoadonbyid(
+    IN bandat_id INT
+)
+BEGIN
+    SELECT tblnhanvienbanhang232id, thoigian, tblbandat232id
+    FROM tblhoadon232
+    WHERE tblbandat232id = bandat_id;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE savehoadon232(
+    IN nhanvienbanhang_id INT,
+    IN thoi_gian DATE,
+    IN bandat_id INT
+)
+BEGIN
+    INSERT INTO tblhoadon232 (tblnhanvienbanhang232id, thoigian, tblbandat232id)
+    VALUES (nhanvienbanhang_id, thoi_gian, bandat_id);
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE getCombobyId (
+    IN comboID INT
+)
+BEGIN
+    SELECT 
+        id,
+        ten,
+        mota,
+        dongia
+    FROM 
+        tblcombo232
+    WHERE 
+        id = comboID;
+END //
+
+CREATE PROCEDURE getMonanbyId (
+    IN monanID INT
+)
+BEGIN
+    SELECT 
+        id,
+        ten,
+        mota,
+        dongia
+    FROM 
+        tblmonan232
+    WHERE 
+        id = monanID;
+END //
+
+
+CREATE PROCEDURE getinforbandatcombo_by_bandatid (
+    IN bandatID INT
+)
+BEGIN
+    SELECT 
+        id,
+        soluong,
+        dongia,
+        tblbandat232id,
+        tblcombo232id
+    FROM 
+        tblbandatcombo232
+    WHERE 
+        tblbandat232id = bandatID;
+END //
+
+CREATE PROCEDURE getinforbandatmonan_by_bandatid (
+    IN bandatID INT
+)
+BEGIN
+    SELECT 
+        id,
+        soluong,
+        dongia,
+        tblbandat232id,
+        tblmonan232id
+    FROM 
+        tblbandatmonan232
+    WHERE 
+        tblbandat232id = bandatID;
+END //
+
+DELIMITER ;
 DELIMITER //
 
 CREATE PROCEDURE get_bandat_by_tenban(IN tenban_input VARCHAR(255))
 BEGIN
-    SELECT b.id, b.thoigiandat, b.thoigianan, b.confirmdat, b.mota, 
+    SELECT b.id, b.thoigiandat, b.thoigianan,b.ngayan, b.confirmdat, b.mota, 
            b.tblkhachhang232id, b.tblnhanvienbanhang232id, b.tblbanan232id
     FROM tblbandat232 b
     JOIN tblbanan232 ba ON b.tblbanan232id = ba.id
@@ -80,54 +200,6 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE GetBandatMonAnAndComboInfoByBandatId(
-    IN tblbandat232id INT
-)
-BEGIN
-    SELECT 
-        bdm.id AS bandatmonan_id,
-        bdm.dongia AS dongia_mondat,
-        bdm.soluong AS so_luong,
-        c.id AS combo_id,
-        c.ten AS ten_combo,
-        c.mota AS mo_ta_combo
-    FROM 
-        tblbandatmonan232 bdm
-    LEFT JOIN 
-        tblbandatcombo232 bdcombo ON bdm.tblbandat232id = bdcombo.tblbandat232id
-    LEFT JOIN 
-        tblcombo232 c ON bdcombo.tblcombo232id = c.id
-    WHERE 
-        bdm.tblbandat232id = tblbandat232id;  -- Lọc theo tblbandat232id
-
-END //
-
-DELIMITER ;
-
-DELIMITER //
-
-CREATE PROCEDURE GetBandatMonAnInfoByBandatId(
-    IN tblbandat232id INT
-)
-BEGIN
-    SELECT 
-        bdm.id AS bandatmonan_id,
-        bdm.dongia AS dongia_mondat,
-        bdm.soluong AS so_luong,
-        m.id AS monan_id,
-        m.ten AS ten_mon,
-        m.mota AS mo_ta,
-        m.dongia AS dongia_monan
-    FROM 
-        tblbandatmonan232 bdm
-    JOIN 
-        tblmonan232 m ON bdm.tblmonan232id = m.id
-    WHERE 
-        bdm.tblbandat232id = tblbandat232id;  -- Lọc theo tblbandat232id
-
-END //
-
-DELIMITER ;
 
 
 DELIMITER //
@@ -165,6 +237,14 @@ BEGIN
     SELECT * 
     FROM tblmonan232 
     WHERE ten LIKE CONCAT('%', ten_mon_an, '%');
+END //
+
+
+CREATE PROCEDURE timkiemcombotheoten(IN ten_combo VARCHAR(255))
+BEGIN
+    SELECT * 
+    FROM tblcombo232 
+    WHERE ten LIKE CONCAT('%', ten_combo, '%');
 END //
 
 DELIMITER ;
