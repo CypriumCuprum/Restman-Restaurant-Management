@@ -30,7 +30,8 @@ BEGIN
         mota,
         tblkhachhang232id,
         tblnhanvienbanhang232id,
-        tblbanan232id
+        tblbanan232id,
+        is_onl
     FROM 
         tblbandat232
     WHERE 
@@ -108,7 +109,8 @@ BEGIN
         soluong,
         dongia,
         tblbandat232id,
-        tblcombo232id
+        tblcombo232id,
+        is_onl
     FROM 
         tblbandatcombo232
     WHERE 
@@ -124,7 +126,8 @@ BEGIN
         soluong,
         dongia,
         tblbandat232id,
-        tblmonan232id
+        tblmonan232id,
+        is_onl
     FROM 
         tblbandatmonan232
     WHERE 
@@ -137,7 +140,7 @@ DELIMITER //
 CREATE PROCEDURE get_bandat_by_tenban(IN tenban_input VARCHAR(255))
 BEGIN
     SELECT b.id, b.thoigiandat, b.thoigianan,b.ngayan, b.confirmdat, b.mota, 
-           b.tblkhachhang232id, b.tblnhanvienbanhang232id, b.tblbanan232id
+           b.tblkhachhang232id, b.tblnhanvienbanhang232id, b.tblbanan232id, b.is_onl
     FROM tblbandat232 b
     JOIN tblbanan232 ba ON b.tblbanan232id = ba.id
     WHERE ba.tenban LIKE CONCAT('%', tenban_input, '%');

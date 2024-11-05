@@ -37,7 +37,8 @@ public class BandatComboDAO232 extends DAO232 {
                 float dongia = resultSet.getFloat("dongia");
                 int comboId = resultSet.getInt("tblcombo232id");
                 Combo232 combo = (new ComboDAO232()).getCombobyId(comboId);
-                danhSachCombodat.add(new BandatCombo232(id, soluong, dongia, combo));
+                boolean is_onl = resultSet.getBoolean("is_onl");
+                danhSachCombodat.add(new BandatCombo232(id, soluong, dongia, combo, is_onl));
             }
         } catch (Exception e) {
         }

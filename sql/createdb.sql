@@ -116,6 +116,7 @@ CREATE TABLE tblbandat232 (
     tblkhachhang232id INT NOT NULL,
     tblnhanvienbanhang232id INT NOT NULL,
     tblbanan232id INT NOT NULL,
+    is_onl BOOLEAN NOT NULL,
     FOREIGN KEY (tblkhachhang232id) REFERENCES tblkhachhang232(tblnguoidung232id),
     FOREIGN KEY (tblnhanvienbanhang232id) REFERENCES tblnhanvienbanhang232(tblnhanvien232tblnguoidung232id),
     FOREIGN KEY (tblbanan232id) REFERENCES tblbanan232(id),
@@ -129,6 +130,7 @@ CREATE TABLE tblbandatcombo232 (
     dongia FLOAT(10) NOT NULL CHECK (dongia >= 0),
     tblbandat232id INT NOT NULL,
     tblcombo232id INT NOT NULL,
+    is_onl BOOLEAN NOT NULL,
     FOREIGN KEY (tblbandat232id) REFERENCES tblbandat232(id),
     FOREIGN KEY (tblcombo232id) REFERENCES tblcombo232(id)
 );
@@ -140,6 +142,7 @@ CREATE TABLE tblbandatmonan232 (
     soluong INT NOT NULL CHECK (soluong > 0),
     tblbandat232id INT NOT NULL,
     tblmonan232id INT NOT NULL,
+    is_onl BOOLEAN NOT NULL,
     FOREIGN KEY (tblbandat232id) REFERENCES tblbandat232(id),
     FOREIGN KEY (tblmonan232id) REFERENCES tblmonan232(id)
 );

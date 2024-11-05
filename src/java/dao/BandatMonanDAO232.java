@@ -34,7 +34,8 @@ public class BandatMonanDAO232 extends DAO232 {
                 float dongia = resultSet.getFloat("dongia");
                 int monanId = resultSet.getInt("tblmonan232id");
                 Monan232 monan = (new MonanDAO232()).getMonanbyId(monanId);
-                danhSachMondat.add(new BandatMonan232(id, soluong, dongia, monan));
+                boolean is_onl = resultSet.getBoolean("is_onl");
+                danhSachMondat.add(new BandatMonan232(id, soluong, dongia, monan, is_onl));
             }
         } catch (Exception e) {
         }

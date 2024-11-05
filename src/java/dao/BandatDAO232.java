@@ -46,13 +46,14 @@ public class BandatDAO232 extends DAO232 {
                     int khachhangId = rs.getInt("tblkhachhang232id");
                     int nhanvienId = rs.getInt("tblnhanvienbanhang232id");
                     int bananId = rs.getInt("tblbanan232id");
+                    boolean is_onl = rs.getBoolean("is_onl");
 
                     Khachhang232 khachhang232 = (new KHDAO232()).getkhachhangbyId(khachhangId);
                     Nhanvienbanhang232 nhanvienbanhang232 = (new NhanvienbanhangDAO232()).getNVBHbyID(nhanvienId);
                     Banan232 banan232 = (new BananDAO232()).get_banan_by_id(bananId);
                     List<BandatCombo232> combodat = (new BandatComboDAO232()).getBandatCombobyBandatid(bananId);
                     List<BandatMonan232> monandat = (new BandatMonanDAO232()).getBandatMonanbyBandatid(bananId);
-                    Bandat232 bandat = new Bandat232(id, thoigiandat, thoigianan, ngayan, confirmdat, mota, khachhang232, nhanvienbanhang232, banan232, combodat, monandat);
+                    Bandat232 bandat = new Bandat232(id, thoigiandat, thoigianan, ngayan, confirmdat, mota, is_onl, khachhang232, nhanvienbanhang232, banan232, combodat, monandat);
                     bandatList.add(bandat);
                 }
             }
@@ -82,13 +83,14 @@ public class BandatDAO232 extends DAO232 {
                 int khachhangId = rs.getInt("tblkhachhang232id");
                 int nhanvienId = rs.getInt("tblnhanvienbanhang232id");
                 int bananId = rs.getInt("tblbanan232id");
+                boolean is_onl = rs.getBoolean("is_onl");
 
                 Khachhang232 khachhang232 = (new KHDAO232()).getkhachhangbyId(khachhangId);
                 Nhanvienbanhang232 nhanvienbanhang232 = (new NhanvienbanhangDAO232()).getNVBHbyID(nhanvienId);
                 Banan232 banan232 = (new BananDAO232()).get_banan_by_id(bananId);
                 List<BandatCombo232> combodat = (new BandatComboDAO232()).getBandatCombobyBandatid(bananId);
                 List<BandatMonan232> monandat = (new BandatMonanDAO232()).getBandatMonanbyBandatid(bananId);
-                bandat232 = new Bandat232(id, thoigiandat, thoigianan, ngayan, confirmdat, mota, khachhang232, nhanvienbanhang232, banan232, combodat, monandat);
+                bandat232 = new Bandat232(id, thoigiandat, thoigianan, ngayan, confirmdat, mota, is_onl, khachhang232, nhanvienbanhang232, banan232, combodat, monandat);
             }
 
         } catch (Exception e) {

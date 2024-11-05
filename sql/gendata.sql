@@ -91,27 +91,27 @@ INSERT INTO tblcombomonan232 (id, tblcombo232id, tblmonan232id) VALUES
 (12, 4, 12); -- Bánh tráng miệng
 
 -- Thêm dữ liệu cho bảng tblbandat232
-INSERT INTO tblbandat232 (id, thoigiandat,thoigianan,ngayan, confirmdat, mota, tblkhachhang232id, tblnhanvienbanhang232id, tblbanan232id) VALUES
-(1, '2024-10-20 15:30:00','buổi sáng','2024-10-21', TRUE, 'Đặt bàn cho khách hàng 2', 2, 3, 1),
-(2, '2024-10-22 18:00:00', 'buổi tối', '2024-10-23', TRUE, 'Đặt bàn cho khách hàng 1', 6, 11, 2),
-(3, '2024-10-23 12:30:00', 'buổi trưa', '2024-10-24', TRUE, 'Đặt bàn cho khách hàng 3', 7, 12, 3);
+INSERT INTO tblbandat232 (id, thoigiandat,thoigianan,ngayan, confirmdat, mota, tblkhachhang232id, tblnhanvienbanhang232id, tblbanan232id, is_onl) VALUES
+(1, '2024-10-20 15:30:00','buổi sáng','2024-10-21', TRUE, 'Đặt bàn cho khách hàng 2', 2, 3, 1, FALSE),
+(2, '2024-10-22 18:00:00', 'buổi tối', '2024-10-23', TRUE, 'Đặt bàn cho khách hàng 1', 6, 11, 2, FALSE),
+(3, '2024-10-23 12:30:00', 'buổi trưa', '2024-10-24', TRUE, 'Đặt bàn cho khách hàng 3', 7, 12, 3, FALSE);
 
 -- Thêm dữ liệu cho bảng tblbandatcombo232
-INSERT INTO tblbandatcombo232 (id, soluong, dongia, tblbandat232id, tblcombo232id) VALUES
-(1, 2, 300000, 1, 1),  -- Combo Gia Đình
-(2, 1, 600000, 2, 3),  -- Combo Sinh Nhật
-(3, 1, 700000, 3, 4);  -- Combo Tiệc Tùng
+INSERT INTO tblbandatcombo232 (id, soluong, dongia, tblbandat232id, tblcombo232id, is_onl) VALUES
+(1, 2, 300000, 1, 1, FALSE),  -- Combo Gia Đình
+(2, 1, 600000, 2, 3, FALSE),  -- Combo Sinh Nhật
+(3, 1, 700000, 3, 4, FALSE);  -- Combo Tiệc Tùng
 
 -- Thêm dữ liệu cho bảng tblbandatmonan232
-INSERT INTO tblbandatmonan232 (id, dongia, soluong, tblbandat232id, tblmonan232id) VALUES
-(1, 50000, 1, 1, 1),  -- Phở
-(2, 30000, 1, 1, 3),  -- Gỏi Cuốn
-(3, 35000, 2, 1, 4),  -- Chả Giò
-(4, 90000, 1, 2, 8),   -- Pizza
-(5, 50000, 2, 2, 9),    -- Khoai Tây Chiên
-(6, 70000, 1, 3, 10),   -- Mỳ Ý
-(7, 40000, 1, 3, 11),   -- Salad
-(8, 60000, 1, 3, 12);   -- Bánh tráng miệng
+INSERT INTO tblbandatmonan232 (id, dongia, soluong, tblbandat232id, tblmonan232id, is_onl) VALUES
+(1, 50000, 1, 1, 1, FALSE),  -- Phở
+(2, 30000, 1, 1, 3, FALSE),  -- Gỏi Cuốn
+(3, 35000, 2, 1, 4, FALSE),  -- Chả Giò
+(4, 90000, 1, 2, 8, FALSE),   -- Pizza
+(5, 50000, 2, 2, 9, FALSE),    -- Khoai Tây Chiên
+(6, 70000, 1, 3, 10, FALSE),   -- Mỳ Ý
+(7, 40000, 1, 3, 11, FALSE),   -- Salad
+(8, 60000, 1, 3, 12, FALSE);   -- Bánh tráng miệng
 
 -- Thêm dữ liệu cho bảng tblhoadon232
 -- INSERT INTO tblhoadon232 (tblnhanvienbanhang232id, tongtien, thoigian, tblbandat232id) VALUES

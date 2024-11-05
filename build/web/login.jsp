@@ -23,6 +23,7 @@
             </form>
 
             <%
+                try{
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 NguoidungDAO232 nguoidungDAO = new NguoidungDAO232();
@@ -58,9 +59,13 @@
                         }
                         
                     } catch (SQLException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
                         out.println("<p style='color:red;'>Có lỗi xảy ra khi kết nối đến cơ sở dữ liệu.</p>");
                     }
+                }
+                }
+                catch(Exception e){
+                out.println("<p style='color:red;'>Có lỗi xảy ra khi kết nối đến cơ sở dữ liệu.</p>");
                 }
             %>
         </div>

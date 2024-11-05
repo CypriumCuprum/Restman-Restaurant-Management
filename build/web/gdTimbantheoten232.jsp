@@ -54,6 +54,7 @@
                         <th>Khách hàng</th>
                         <th>Thời gian đặt</th>
                         <th>Buổi ăn</th>
+                        <th>Online</th>
                     </tr>
                     
             <%
@@ -74,24 +75,28 @@
                     }
                 else{
                     for (Bandat232 item : bandat232arr) {
-                        session.setAttribute("bandat_"+ item.getId(), item);
-                        int id_item = item.getId();
-                        String tenban = item.getBanan232().getTenban();
-                        String tenkhachhang = item.getKhachhang232().getHovaten();
-                        String tennvbh = item.getNhanvienbanhang232().getHovaten();
-                        Date timedatban = item.getThoigiandat();
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                        String strThoiGianDat = sdf.format(timedatban);
-                        String thoigianan = item.getThoigianan();
-                    %>
-                             <tr onclick="window.location.href='gdHoadonKH232.jsp?id=<%= item.getId() %>'">
-                        <td><%= id_item %></td>
-                        <td><%= tenban %></td>
-                        <td><%= tenkhachhang %></td>
-                        <td><%= strThoiGianDat %></td>
-                        <td><%= thoigianan %></td>
-                    </tr>
-                    <%
+                        if(item.isConfirmdat()){
+                                session.setAttribute("bandat_"+ item.getId(), item);
+                                int id_item = item.getId();
+                                String tenban = item.getBanan232().getTenban();
+                                String tenkhachhang = item.getKhachhang232().getHovaten();
+                                String tennvbh = item.getNhanvienbanhang232().getHovaten();
+                                Date timedatban = item.getThoigiandat();
+                                boolean is_onl = item.isIs_onl();
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                String strThoiGianDat = sdf.format(timedatban);
+                                String thoigianan = item.getThoigianan();
+                            %>
+                                     <tr onclick="window.location.href='gdHoadonKH232.jsp?id=<%= item.getId() %>'">
+                                <td><%= id_item %></td>
+                                <td><%= tenban %></td>
+                                <td><%= tenkhachhang %></td>
+                                <td><%= strThoiGianDat %></td>
+                                <td><%= thoigianan %></td>
+                                <td><%= is_onl%></td>
+                            </tr>
+                            <%
+                        }
                     }
                 }
 

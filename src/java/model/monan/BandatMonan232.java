@@ -15,13 +15,19 @@ public class BandatMonan232 {
     private float dongia;
     private float tongtien;
     private Monan232 monan232;
+    private boolean is_onl;
 
-    public BandatMonan232(int id, int soluong, float dongia, Monan232 monan232) {
+    public BandatMonan232(int id, int soluong, float dongia, Monan232 monan232, boolean is_onl) {
         this.id = id;
         this.soluong = soluong;
         this.dongia = dongia;
         this.monan232 = monan232;
         this.tongtien = this.soluong * this.dongia;
+        this.is_onl = is_onl;
+    }
+
+    public boolean isIs_onl() {
+        return is_onl;
     }
 
     public float getTongtien() {

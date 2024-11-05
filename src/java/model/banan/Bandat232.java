@@ -22,13 +22,14 @@ public class Bandat232 {
     private Date ngayan;
     private boolean confirmdat;
     private String mota;
+    private boolean is_onl;
     private Khachhang232 khachhang232;
     private Nhanvienbanhang232 nhanvienbanhang232; // nhân viên bán hàng tạo hoặc xác nhận bàn đặt
     private Banan232 banan232;
     private List<BandatCombo232> bandatCombo232arr;
     private List<BandatMonan232> bandatMonan232arr;
 
-    public Bandat232(int id, Date thoigiandat, String thoigianan, Date ngayan, boolean confirmdat, String mota, Khachhang232 khachhang232, Nhanvienbanhang232 nhanvienbanhang232, Banan232 banan232, List<BandatCombo232> bandatCombo232arr, List<BandatMonan232> bandatMonan232arr) {
+    public Bandat232(int id, Date thoigiandat, String thoigianan, Date ngayan, boolean confirmdat, String mota, boolean is_onl, Khachhang232 khachhang232, Nhanvienbanhang232 nhanvienbanhang232, Banan232 banan232, List<BandatCombo232> bandatCombo232arr, List<BandatMonan232> bandatMonan232arr) {
         this.id = id;
         this.thoigiandat = thoigiandat;
         this.thoigianan = thoigianan;
@@ -40,6 +41,11 @@ public class Bandat232 {
         this.banan232 = banan232;
         this.bandatCombo232arr = bandatCombo232arr;
         this.bandatMonan232arr = bandatMonan232arr;
+        this.is_onl = is_onl;
+    }
+
+    public boolean isIs_onl() {
+        return is_onl;
     }
 
     public List<BandatCombo232> getBandatCombo232arr() {
